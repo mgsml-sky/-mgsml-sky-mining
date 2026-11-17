@@ -32,20 +32,19 @@
 
     <style>
         :root {
-            --primary-sky: #38bdf8;
-            --accent-green: #10b981;
-            --gold: #f59e0b;
+            --primary-sky: #0284c7;
+            --accent-blue: #0ea5e9;
+            --gold: #facc15;
             --danger: #ef4444;
             --fire-orange: #f97316;
-            --water-blue: #0284c7;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- ROSE PINK PAGE BACKGROUND --- */
+        /* --- SKY BLUE & DARK THEME BACKGROUND --- */
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #2b0f1a 0%, #4a1525 50%, #1f0a12 100%);
+            background: linear-gradient(135deg, #03162b 0%, #082f49 50%, #020b18 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -58,135 +57,123 @@
         /* Top Bar */
         .engine-header {
             width: 100%; max-width: 480px; height: 58px;
-            background: rgba(59, 18, 31, 0.95); backdrop-filter: blur(12px);
-            border-bottom: 1.5px solid rgba(244, 63, 94, 0.4);
+            background: rgba(8, 47, 73, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1.5px solid rgba(14, 165, 233, 0.4);
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 16px; position: sticky; top: 0; z-index: 1000;
         }
         .brand-box { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .menu-btn { font-size: 22px; background: none; border: none; color: #fb7185; cursor: pointer; padding-right: 5px; }
-        .brand-title { font-size: 13px; font-weight: 900; color: #fb7185; text-transform: uppercase; }
-        .brand-sub { font-size: 8px; font-weight: 800; color: var(--accent-green); text-transform: uppercase; }
+        .menu-btn { font-size: 22px; background: none; border: none; color: #38bdf8; cursor: pointer; padding-right: 5px; }
+        .brand-title { font-size: 13px; font-weight: 900; color: #38bdf8; text-transform: uppercase; }
+        .brand-sub { font-size: 8px; font-weight: 800; color: var(--gold); text-transform: uppercase; }
 
         .wallet-pill {
-            background: rgba(16, 185, 129, 0.2); border: 1.5px solid var(--accent-green);
-            padding: 5px 10px; border-radius: 18px; font-size: 11px; font-weight: 900; color: #34d399;
+            background: rgba(14, 165, 233, 0.2); border: 1.5px solid var(--accent-blue);
+            padding: 5px 10px; border-radius: 18px; font-size: 11px; font-weight: 900; color: #38bdf8;
             display: flex; align-items: center; gap: 5px;
         }
 
         /* Side Menu Drawer */
         .side-menu {
             position: fixed; left: -280px; top: 0; width: 280px; height: 100%;
-            background: #2b0f1a; transition: 0.3s ease-in-out; z-index: 7000;
-            padding: 15px; box-sizing: border-box; border-right: 1.5px solid #831843;
+            background: #03162b; transition: 0.3s ease-in-out; z-index: 7000;
+            padding: 15px; box-sizing: border-box; border-right: 1.5px solid #0284c7;
             overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.9);
         }
         .side-menu.open { left: 0; }
-        .side-menu h3 { color: #fb7185; margin-top: 0; font-size: 15px; border-bottom: 1px solid #831843; padding-bottom: 10px; }
-        .menu-link { display: block; color: white; text-decoration: none; padding: 12px 0; border-bottom: 1px solid #831843; font-size: 12px; font-weight: 800; cursor: pointer; }
+        .side-menu h3 { color: #38bdf8; margin-top: 0; font-size: 15px; border-bottom: 1px solid #0284c7; padding-bottom: 10px; }
+        .menu-link { display: block; color: white; text-decoration: none; padding: 12px 0; border-bottom: 1px solid #0284c7; font-size: 12px; font-weight: 800; cursor: pointer; }
 
         /* Container Card */
         .engine-container {
             width: 100%; max-width: 480px; padding: 16px; display: flex; flex-direction: column; gap: 14px;
         }
 
-        /* --- OUTER MINING CARD WITH DYNAMIC LIGHTING ANIMATION --- */
+        /* Mining Card */
         .mining-card {
-            background: linear-gradient(145deg, #421223, #2e0c18); 
-            border: 2.5px solid #fb7185; 
+            background: linear-gradient(145deg, #082f49, #03162b); 
+            border: 2.5px solid #0ea5e9; 
             border-radius: 18px;
             padding: 16px; text-align: center; 
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(244, 63, 94, 0.4);
-            animation: dynamic-card-lighting 8s infinite alternate ease-in-out;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(14, 165, 233, 0.4);
             display: flex; flex-direction: column; align-items: center; position: relative;
         }
 
-        @keyframes dynamic-card-lighting {
-            0% { border-color: #fb7185; box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(244,63,94,0.4); }
-            33% { border-color: #38bdf8; box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(56,189,248,0.5); }
-            66% { border-color: #f59e0b; box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(245,158,11,0.5); }
-            100% { border-color: #a855f7; box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(168,85,247,0.5); }
-        }
-
-        /* --- DEDICATED GLOBAL SUPPLY & BURN BOX --- */
         .supply-burn-box {
-            width: 100%; background: #220813; border: 1.5px solid #831843; border-radius: 12px;
+            width: 100%; background: #020b18; border: 1.5px solid #0284c7; border-radius: 12px;
             padding: 10px; margin-bottom: 10px; text-align: center;
         }
-        .supply-text { font-size: 11px; color: #fbcfe8; font-weight: 700; }
+        .supply-text { font-size: 11px; color: #bae6fd; font-weight: 700; }
         .supply-val { font-size: 13px; font-weight: 900; color: #facc15; margin-top: 2px; }
-        .price-text { font-size: 12px; color: #fb7185; font-weight: 900; margin-bottom: 8px; }
+        .price-text { font-size: 12px; color: #38bdf8; font-weight: 900; margin-bottom: 8px; }
 
-        /* --- 1. FACTORY PIPELINE & TWO-TIER VAULT BOX --- */
         .factory-machine-box {
             width: 100%; 
-            background: linear-gradient(145deg, #59162f, #3b0e1e);
-            border: 2px solid #fb7185; 
+            background: linear-gradient(145deg, #0369a1, #0284c7);
+            border: 2px solid #38bdf8; 
             border-radius: 16px;
             padding: 12px; 
             margin: 4px 0 10px 0; 
             position: relative; 
             box-sizing: border-box;
-            box-shadow: 0 0 20px rgba(244, 63, 94, 0.4), inset 0 0 15px rgba(190, 18, 60, 0.3);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.4), inset 0 0 15px rgba(2, 132, 199, 0.3);
         }
         .factory-title { font-size: 12px; font-weight: 900; color: #facc15; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.8px; }
         #refinery-canvas { 
             width: 100%; 
             height: 200px; 
-            background: radial-gradient(circle, #421223 0%, #2e0c18 100%);
+            background: radial-gradient(circle, #082f49 0%, #03162b 100%);
             border-radius: 12px; 
-            border: 1.5px solid rgba(251, 113, 133, 0.6); 
+            border: 1.5px solid rgba(14, 165, 233, 0.6); 
             display: block; 
         }
 
-        /* --- STATS BOARD PLACED RIGHT UNDER THE FACTORY PIPELINE --- */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; margin: 8px 0; }
-        .stat-box { background: #330e1b; border: 1.5px solid #831843; border-radius: 10px; padding: 8px 4px; text-align: center; }
+        .stat-box { background: #020b18; border: 1.5px solid #0284c7; border-radius: 10px; padding: 8px 4px; text-align: center; }
         .stat-val { font-size: 12px; font-weight: 900; color: #facc15; }
-        .stat-lbl { font-size: 8px; font-weight: 800; color: #fbcfe8; margin-top: 2px; text-transform: uppercase; }
+        .stat-lbl { font-size: 8px; font-weight: 800; color: #bae6fd; margin-top: 2px; text-transform: uppercase; }
 
-        /* --- 2. BIG, BOLD 3D SKY LOGO (VIBRATES ONLY WHEN ACTIVE) --- */
         .logo-display-box {
             width: 100%; 
-            background: linear-gradient(145deg, #59162f, #3b0e1e);
-            border: 2px solid #fb7185; 
+            background: linear-gradient(145deg, #0369a1, #0284c7);
+            border: 2px solid #38bdf8; 
             border-radius: 16px; 
             padding: 18px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             margin: 6px 0; 
-            box-shadow: 0 0 20px rgba(244, 63, 94, 0.35), 0 8px 25px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.35), 0 8px 25px rgba(0, 0, 0, 0.6);
         }
-        .sky-logo-circle {
+        .logo-circle {
             width: 125px; height: 125px;
-            background: radial-gradient(circle at 30% 30%, #38bdf8, #0284c7 60%, #01436f 100%);
+            background: radial-gradient(circle at 30% 30%, #38bdf8, #0284c7 60%, #03162b 100%);
             border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            border: 4px solid #7dd3fc;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), 0 0 15px rgba(239, 68, 68, 0.9), 0 0 10px rgba(245, 158, 11, 0.95);
+            border: 4px solid #facc15;
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.9), 0 0 15px rgba(250, 204, 21, 0.9);
             transition: transform 0.3s ease;
         }
-        .sky-logo-circle.is-vibrating {
+        .logo-circle.is-vibrating {
             animation: logo-vibrate 0.25s infinite alternate ease-in-out;
         }
         @keyframes logo-vibrate {
             0% { transform: translate(1.5px, 1.5px) rotate(0deg); }
             100% { transform: translate(-1.5px, -1.5px) rotate(-1.5deg); }
         }
-        .logo-text { font-size: 28px; font-weight: 900; color: #fff; text-shadow: 0 3px 6px rgba(0,0,0,0.9); letter-spacing: 1px; }
-        .logo-sub { font-size: 11px; font-weight: 900; color: #facc15; text-transform: uppercase; letter-spacing: 1.5px; }
+        .logo-symbol { font-size: 26px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .logo-text { font-size: 15px; font-weight: 900; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.9); letter-spacing: 0.5px; margin-top: 2px; }
+        .logo-sub { font-size: 8px; font-weight: 900; color: #facc15; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* 3-Hour Timeline Progress Bar */
         .progress-bar-container {
-            width: 100%; background: #1f0a12; border: 1.5px solid #fb7185; border-radius: 10px;
+            width: 100%; background: #020b18; border: 1.5px solid #0ea5e9; border-radius: 10px;
             height: 14px; margin-top: 14px; overflow: hidden; position: relative;
         }
         .progress-bar-fill {
-            height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #10b981);
+            height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #facc15);
             transition: width 0.5s linear; border-radius: 10px;
         }
         .progress-text { font-size: 11px; font-weight: 800; color: #facc15; margin-top: 6px; }
 
         .factory-status-text {
-            font-size: 11px; font-weight: 800; color: #fdf2f8; margin-top: 6px; background: #330e1b; padding: 8px; border-radius: 10px; border: 1.5px solid #831843;
+            font-size: 11px; font-weight: 800; color: #e0f2fe; margin-top: 6px; background: #020b18; padding: 8px; border-radius: 10px; border: 1.5px solid #0284c7;
         }
         .factory-status-text span { color: #facc15; }
 
@@ -194,48 +181,54 @@
             background: linear-gradient(135deg, #0284c7, #38bdf8); color: #030712; border: none;
             padding: 12px 24px; border-radius: 12px; font-size: 13px; font-weight: 900; cursor: pointer;
             width: 100%; text-transform: uppercase; letter-spacing: 0.8px;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4); margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4); margin-top: 8px;
         }
         .stake-btn:active { transform: scale(0.96); }
-        .timer-display { font-size: 11.5px; font-weight: 900; color: #facc15; background: #330e1b; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #831843; margin-top: 8px; }
+        .timer-display { font-size: 11.5px; font-weight: 900; color: #facc15; background: #020b18; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #0284c7; margin-top: 8px; }
 
-        /* Transfer Section */
+        /* Transfer Section (Controlled by Admin Toggle Switch) */
         .transfer-section {
-            background: linear-gradient(145deg, #421223, #2e0c18); 
-            border: 2px solid #fb7185; 
+            background: linear-gradient(145deg, #082f49, #03162b); 
+            border: 2px solid #0ea5e9; 
             border-radius: 18px; 
             padding: 16px; 
             width: 100%; 
             box-sizing: border-box;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            display: none; /* Default Hidden */
         }
         .form-group { margin-bottom: 10px; text-align: left; }
-        .form-label { font-size: 10.5px; font-weight: 800; color: #fbcfe8; display: block; margin-bottom: 4px; text-transform: uppercase; }
-        .custom-input { width: 100%; padding: 10px; background: #1f0a12; border: 1.5px solid #831843; color: #fff; border-radius: 8px; font-size: 12px; box-sizing: border-box; }
+        .form-label { font-size: 10.5px; font-weight: 800; color: #bae6fd; display: block; margin-bottom: 4px; text-transform: uppercase; }
+        .custom-input { width: 100%; padding: 10px; background: #020b18; border: 1.5px solid #0284c7; color: #fff; border-radius: 8px; font-size: 12px; box-sizing: border-box; }
 
-        /* --- HIDDEN BLACK GATEWAY ADMIN MODAL (CLEAN & SHADOW-FREE) --- */
+        /* Hidden Admin Modal */
         #admin-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000000; z-index: 9999; justify-content: center; align-items: center;
         }
-        .admin-box { background: #0a0a0a; border: 1.5px solid #262626; padding: 24px; border-radius: 12px; width: 85%; max-width: 320px; text-align: center; }
+        .admin-box { background: #0a0a0a; border: 1.5px solid #262626; padding: 24px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; max-height: 90vh; overflow-y: auto; }
 
-        /* Ad Overlay Modal */
+        /* Admin Ad Frame Container */
+        #admin-ad-frame {
+            width: 100%; height: 120px; border: 1.5px solid #0284c7; border-radius: 8px; background: #000; margin-top: 5px;
+        }
+
+        /* Auto-Close Ad Popup Modal */
         #ad-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 3, 6, 0.95); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;
+            background: rgba(3, 22, 43, 0.98); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;
         }
-        .ad-content-box { width: 90%; max-width: 400px; background: #3b0e1e; border: 2px solid #fb7185; border-radius: 16px; padding: 20px; text-align: center; }
+        .ad-content-box { width: 92%; max-width: 420px; background: #082f49; border: 2px solid #0ea5e9; border-radius: 16px; padding: 20px; text-align: center; }
 
         /* Bottom Back Bar */
         .bottom-bar {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 54px;
-            background: rgba(59, 18, 31, 0.95); border-top: 1.5px solid rgba(244, 63, 94, 0.4);
+            background: rgba(8, 47, 73, 0.95); border-top: 1.5px solid rgba(14, 165, 233, 0.4);
             display: flex; justify-content: center; align-items: center; padding: 0 14px; z-index: 1000;
         }
         .back-main-btn {
-            width: 100%; max-width: 480px; height: 38px; background: #59162f;
-            border: 1.5px solid #fb7185; color: #fb7185; border-radius: 10px;
+            width: 100%; max-width: 480px; height: 38px; background: #0369a1;
+            border: 1.5px solid #0ea5e9; color: #38bdf8; border-radius: 10px;
             font-size: 11px; font-weight: 900; text-transform: uppercase; cursor: pointer;
         }
     </style>
@@ -251,9 +244,9 @@
             </div>
         </div>
         <div class="wallet-pill">
-            <span>🆔 <span id="header-uid">GUEST</span></span>
+            <span>🆔 <span id="header-uid">MGSML2000</span></span>
             <span>|</span>
-            <span>🔹 <span id="header-sky-bal">0</span> SKY</span>
+            <span>☁️ <span id="header-sky-bal">0</span> SKY</span>
         </div>
     </header>
 
@@ -262,10 +255,10 @@
         <h3>MGSML SKY MENU</h3>
         <a class="menu-link" onclick="toggleMenu()">🏠 Dashboard</a>
         <a class="menu-link" onclick="openAdminModal()">🔐 Secret Admin Panel</a>
-        <a class="menu-link" onclick="toggleMenu()" style="color: #fbcfe8;">❌ Close Menu</a>
+        <a class="menu-link" onclick="toggleMenu()" style="color: #bae6fd;">❌ Close Menu</a>
     </div>
 
-    <!-- Hidden Black Gateway Admin Modal -->
+    <!-- Hidden Admin Modal -->
     <div id="admin-modal" style="display:none;">
         <div class="admin-box">
             <h3 style="color:#ffffff; margin-bottom:14px; font-size:14px; letter-spacing:1px;">ADMIN GATEWAY</h3>
@@ -277,25 +270,36 @@
             </div>
             
             <div id="admin-controls-sec" style="display:none; text-align:left; font-size:11px;">
-                <!-- 1. Mining Reward Management -->
                 <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px;">
                     <label style="color:#a3a3a3; font-weight:800; display:block; margin-bottom:4px;">3-Hour Mining Reward (SKY):</label>
-                    <input type="number" id="adm-reward-input" class="custom-input" value="10">
-                    <button class="stake-btn" style="background:var(--accent-green); color:#fff; margin-top:8px; padding:8px;" onclick="saveMiningRewardOnly()">💾 Save Reward</button>
+                    <input type="number" id="adm-reward-input" class="custom-input" value="8.5">
+                    <button class="stake-btn" style="background:var(--accent-blue); color:#fff; margin-top:8px; padding:8px;" onclick="saveMiningRewardOnly()">💾 Save Reward</button>
                 </div>
 
-                <!-- 2. Sponsored Ad Link Management -->
+                <!-- Admin Ad Management Settings -->
                 <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px;">
-                    <label style="color:#a3a3a3; font-weight:800; display:block; margin-bottom:4px;">Sponsored Ad Link / Video URL:</label>
-                    <input type="text" id="adm-adlink-input" class="custom-input" placeholder="https://example.com/ad">
-                    <button class="stake-btn" style="background:var(--primary-sky); color:#030712; margin-top:8px; padding:8px;" onclick="saveAdLinkOnly()">💾 Save Ad Link</button>
+                    <label style="color:#facc15; font-weight:800; display:block; margin-bottom:4px;">📢 3H Mining Ad Link / Script:</label>
+                    <textarea id="adm-adlink-input" class="custom-input" rows="3" placeholder="Paste Adsterra Direct Link or Banner Script here"></textarea>
+                    
+                    <label style="color:#a3a3a3; font-weight:800; display:block; margin:8px 0 4px 0;">Ad Auto-Close Timer (Seconds):</label>
+                    <input type="number" id="adm-adtimer-input" class="custom-input" value="15" min="5" max="60">
+
+                    <button class="stake-btn" style="background:#0284c7; color:#fff; margin-top:8px; padding:8px;" onclick="saveAdSettings()">💾 Save Ad Settings</button>
                 </div>
 
-                <!-- 3. Dynamic mPIN / Password Update Management -->
+                <!-- Toggle Switch for Wallet Transfer Feature -->
+                <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <label style="color:#a3a3a3; font-weight:800; display:block;">Mini Exchange Transfer:</label>
+                        <span id="transfer-status-label" style="font-size:9px; color:#ef4444;">Status: OFF (Hidden)</span>
+                    </div>
+                    <button id="transfer-toggle-btn" class="stake-btn" style="width:auto; padding:6px 14px; background:#ef4444; color:#fff; margin-top:0;" onclick="toggleTransferFeature()">Turn ON</button>
+                </div>
+
                 <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px;">
                     <label style="color:#a3a3a3; font-weight:800; display:block; margin-bottom:4px;">Change Admin mPIN / Password:</label>
-                    <input type="text" id="adm-new-mpin" class="custom-input" placeholder="Enter new mPIN / 12-words pass">
-                    <button class="stake-btn" style="background:#f59e0b; color:#000; margin-top:8px; padding:8px;" onclick="saveNewAdminPassword()">🔑 Update Password</button>
+                    <input type="text" id="adm-new-mpin" class="custom-input" placeholder="Enter new mPIN">
+                    <button class="stake-btn" style="background:#facc15; color:#000; margin-top:8px; padding:8px;" onclick="saveNewAdminPassword()">🔑 Update Password</button>
                 </div>
 
                 <button class="stake-btn" style="background:#262626; color:#fff; margin-top:4px;" onclick="closeAdminModal()">Close Panel</button>
@@ -303,18 +307,20 @@
         </div>
     </div>
 
-    <!-- Mandatory Ad Popup Modal -->
+    <!-- Dynamic Auto-Close Ad Popup Modal -->
     <div id="ad-modal">
         <div class="ad-content-box">
-            <h3 style="color:#facc15; margin-bottom:8px;">📢 Sponsored Ad Video</h3>
-            <p style="font-size:11px; color:#fbcfe8; margin-bottom:14px;">Please watch this ad to proceed with your 3H mining reward.</p>
+            <h3 style="color:#facc15; margin-bottom:6px;">📢 Sponsored Ad Playing</h3>
+            <p style="font-size:10.5px; color:#bae6fd; margin-bottom:10px;">Please view the ad. Mining will start automatically.</p>
             
-            <div id="ad-countdown-box" style="font-size:24px; font-weight:900; color:var(--accent-green); margin:15px 0; background:#1f0a12; padding:12px; border-radius:10px; border:1.5px solid #831843;">
-                Ad playing: <span id="ad-timer-sec">10</span>s
+            <!-- Real Ad Rendering Container -->
+            <div id="active-ad-container" style="width:100%; min-height:220px; background:#000; border-radius:10px; border:1.5px solid #0ea5e9; overflow:hidden; display:flex; justify-content:center; align-items:center; margin-bottom:10px;">
+                <!-- Admin configured ad will load here -->
             </div>
 
-            <a id="ad-external-link" href="#" target="_blank" class="stake-btn" style="background:var(--primary-sky); color:#030712; display:none; margin-bottom:8px; text-decoration:none;">🔗 Open Sponsored Link</a>
-            <button class="stake-btn" id="ad-skip-btn" style="background:#831843; color:#fff; opacity:0.5;" disabled onclick="completeAdAndStartMining()">Please wait...</button>
+            <div id="ad-countdown-box" style="font-size:16px; font-weight:900; color:#38bdf8; background:#020b18; padding:8px; border-radius:8px; border:1.5px solid #0284c7;">
+                Auto-closing in: <span id="ad-timer-sec">15</span>s
+            </div>
         </div>
     </div>
 
@@ -324,26 +330,26 @@
             
             <!-- Dedicated Global Supply & Burn Box -->
             <div class="supply-burn-box">
-                <div class="supply-text">GLOBAL SUPPLY & REMAINING BURN POOL</div>
-                <div class="supply-val" id="live-supply-counter">10,000,000 / 10,000,000 SKY</div>
+                <div class="supply-text">GLOBAL SUPPLY & REMAINING MIGRATION POOL</div>
+                <div class="supply-val" id="live-supply-counter">50,000,000 / 50,000,000 SKY</div>
             </div>
 
-            <div class="price-text">1 SKY = $<span id="sky-price">0.012</span> USDT</div>
+            <div class="price-text">1 SKY = ₹0.10 INR (~$<span id="sky-price">0.0012</span> USDT)</div>
 
-            <!-- --- 1. FACTORY PIPELINE & TWO-TIER VAULT BOX --- -->
+            <!-- Factory Pipeline -->
             <div class="factory-machine-box">
-                <div class="factory-title">🏭 Sub-Migration & 24K Pure Migration Vault</div>
+                <div class="factory-title">🏭 Sub-Migration & 24K Pure Vault (2 Years Plan)</div>
                 <canvas id="refinery-canvas" width="440" height="200"></canvas>
             </div>
 
-            <!-- --- STATS BOARD PLACED RIGHT UNDER THE FACTORY PIPELINE --- -->
+            <!-- Stats Board -->
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-val" id="rate-sec">0.003</div>
+                    <div class="stat-val" id="rate-sec">0.0008</div>
                     <div class="stat-lbl">Per Second</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-val" id="rate-day">288 SKY</div>
+                    <div class="stat-val" id="rate-day">68 SKY</div>
                     <div class="stat-lbl">Per 24 Hours</div>
                 </div>
                 <div class="stat-box">
@@ -352,9 +358,10 @@
                 </div>
             </div>
 
-            <!-- --- 2. BIG, BOLD 3D SKY LOGO (VIBRATES ONLY DURING 3H ACTIVE MINING) --- -->
+            <!-- Logo & Progress -->
             <div class="logo-display-box">
-                <div class="sky-logo-circle" id="sky-logo-element">
+                <div class="logo-circle" id="sky-logo-element">
+                    <div class="logo-symbol">☁️⚡</div>
                     <div class="logo-text">SKY</div>
                     <div class="logo-sub">TOKEN</div>
                 </div>
@@ -372,14 +379,14 @@
             <div class="timer-display" id="staking-timer">Ready to Refine & Mine</div>
         </div>
 
-        <!-- Transfer Section -->
-        <div class="transfer-section">
-            <div class="section-title" style="font-size:12px; font-weight:900; color:#fb7185; text-transform:uppercase; margin-bottom:8px;">🔄 Mini Exchange Wallet Transfer</div>
-            <p style="font-size: 10.5px; color: #fbcfe8; margin-bottom: 10px;">Transfer mined SKY to Mini Exchange with mPIN & Gmail Verification.</p>
+        <!-- Transfer Section (Controlled by Admin Toggle Switch) -->
+        <div class="transfer-section" id="transfer-section-box">
+            <div class="section-title" style="font-size:12px; font-weight:900; color:#38bdf8; text-transform:uppercase; margin-bottom:8px;">🔄 Mini Exchange Wallet Transfer</div>
+            <p style="font-size: 10.5px; color: #bae6fd; margin-bottom: 10px;">Transfer mined SKY to Mini Exchange with mPIN & Gmail Verification.</p>
             
             <div class="form-group">
                 <label class="form-label">Mini Exchange Wallet Address:</label>
-                <input type="text" id="transfer-wallet-addr" class="custom-input" placeholder="Enter SKY Mini Exchange Address">
+                <input type="text" id="transfer-wallet-addr" class="custom-input" placeholder="Enter Sky Mini Exchange Address">
             </div>
 
             <div class="form-group">
@@ -397,7 +404,7 @@
                 <input type="password" id="transfer-mpin" class="custom-input" placeholder="Enter 4-6 digit mPIN" maxlength="20">
             </div>
 
-            <button class="stake-btn" style="background:linear-gradient(135deg, #059669, #10b981); color:#fff;" onclick="requestSecureTransfer()">Save & Send Verification Link</button>
+            <button class="stake-btn" style="background:linear-gradient(135deg, #0284c7, #38bdf8); color:#fff;" onclick="requestSecureTransfer()">Save & Send Verification Link</button>
         </div>
     </main>
 
@@ -405,20 +412,18 @@
         <button class="back-main-btn" onclick="goBackToHeadRoom()">← Back to MGSML Mining Headroom</button>
     </footer>
 
-    <!-- Adsterra Ad Scripts Integrated -->
-    <script type="text/javascript" src="https://bauval.org/14/bab8e8fa7090b11ab2f39819957bbabb"></script>
-    <script type="text/javascript" src="https://abscloud.org/1/ef5241fe6dcb1ef2019c14682714daf3"></script>
-
     <script>
-        let activeUserId = null;
+        let activeUserId = "MGSML2000";
         let userData = null;
-        let skyBalance = 0;
-        let globalTotalSupply = 10000000;
+        let skyBalance = 0; 
+        let globalTotalSupply = 50000000; 
         let globalPureMigrated = 0; 
-        let subMigrationPool = 50020;  
-        let miningRewardQty = 10;
-        let sponsoredAdUrl = "";
-        let adminSecretPin = "1234"; // Default mPIN
+        let subMigrationPool = 0;  
+        let miningRewardQty = 8.5;
+        let adminAdContent = "";
+        let adminAdTimer = 15; // Default 15 seconds
+        let transferFeatureEnabled = false; // Default OFF
+        let adminSecretPin = "1234"; 
         let registeredUserEmail = "user@gmail.com";
         const MINING_COOLDOWN = 3 * 60 * 60 * 1000; // 3 Hours
 
@@ -447,16 +452,15 @@
                 }
             }
 
-            // --- TOP ROW: REFINERY CHAMBERS ---
-            ctx.fillStyle = '#59162f';
-            ctx.strokeStyle = '#fb7185'; ctx.lineWidth = 2;
+            ctx.fillStyle = '#0369a1';
+            ctx.strokeStyle = '#0ea5e9'; ctx.lineWidth = 2;
             ctx.fillRect(15, 15, 60, 48); ctx.strokeRect(15, 15, 60, 48);
             ctx.fillStyle = '#ffffff'; ctx.font = 'bold 10px sans-serif'; ctx.fillText('🪨 Mineral', 18, 43);
 
-            ctx.strokeStyle = '#fb7185'; ctx.lineWidth = 5;
+            ctx.strokeStyle = '#0ea5e9'; ctx.lineWidth = 5;
             ctx.beginPath(); ctx.moveTo(75, 39); ctx.lineTo(125, 39); ctx.stroke();
 
-            ctx.fillStyle = '#59162f';
+            ctx.fillStyle = '#0369a1';
             ctx.fillRect(125, 15, 60, 48); ctx.strokeRect(125, 15, 60, 48);
             
             if (!supplyExhausted) {
@@ -468,7 +472,7 @@
 
             ctx.beginPath(); ctx.moveTo(185, 39); ctx.lineTo(235, 39); ctx.stroke();
 
-            ctx.fillStyle = '#59162f';
+            ctx.fillStyle = '#0369a1';
             ctx.fillRect(235, 15, 60, 48); ctx.strokeRect(235, 15, 60, 48);
             
             if (!supplyExhausted) {
@@ -485,37 +489,37 @@
 
             ctx.beginPath(); ctx.moveTo(295, 39); ctx.lineTo(345, 39); ctx.stroke();
 
-            ctx.fillStyle = '#059669';
-            ctx.strokeStyle = '#34d399'; ctx.lineWidth = 2;
+            ctx.fillStyle = '#0284c7';
+            ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2;
             ctx.fillRect(345, 12, 80, 54); ctx.strokeRect(345, 12, 80, 54);
             ctx.fillStyle = '#ffffff'; ctx.font = 'bold 9.5px sans-serif';
             ctx.fillText('⚙️ Sub-Mig', 352, 32); 
             ctx.fillStyle = '#facc15'; ctx.font = 'bold 9.5px sans-serif';
             ctx.fillText(`${subMigrationPool.toLocaleString()}`, 350, 52);
 
-            ctx.strokeStyle = '#34d399'; ctx.lineWidth = 5;
+            ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 5;
             ctx.beginPath();
             ctx.moveTo(385, 66);
             ctx.lineTo(385, 105);
             ctx.stroke();
 
-            ctx.fillStyle = '#1f0a12';
-            ctx.strokeStyle = '#fb7185'; ctx.lineWidth = 2;
+            ctx.fillStyle = '#020b18';
+            ctx.strokeStyle = '#0ea5e9'; ctx.lineWidth = 2;
             ctx.fillRect(15, 75, 320, 52);
             ctx.strokeRect(15, 75, 320, 52);
 
-            ctx.fillStyle = '#fbcfe8'; ctx.font = 'bold 9.5px sans-serif';
+            ctx.fillStyle = '#bae6fd'; ctx.font = 'bold 9.5px sans-serif';
             ctx.fillText('🔄 SUB-MIGRATION REFINING POOL', 25, 93);
             ctx.fillStyle = '#38bdf8'; ctx.font = '900 14px sans-serif';
             ctx.fillText(`${subMigrationPool.toLocaleString()} SKY`, 25, 116);
 
-            ctx.fillStyle = '#1f0a12';
+            ctx.fillStyle = '#020b18';
             ctx.strokeStyle = '#facc15'; ctx.lineWidth = 2.5;
             ctx.fillRect(15, 134, 410, 56);
             ctx.strokeRect(15, 134, 410, 56);
 
-            ctx.fillStyle = '#fbcfe8'; ctx.font = 'bold 10px sans-serif';
-            ctx.fillText('🏆 24K PURE GLOBAL MIGRATION VAULT (MAX: 10,000,000)', 25, 152);
+            ctx.fillStyle = '#bae6fd'; ctx.font = 'bold 10px sans-serif';
+            ctx.fillText('🏆 24K PURE GLOBAL MIGRATION VAULT (MAX: 50,000,000)', 25, 152);
 
             ctx.fillStyle = '#facc15'; ctx.font = '900 17px sans-serif';
             ctx.fillText(`${globalPureMigrated.toLocaleString()} SKY`, 25, 178);
@@ -536,7 +540,7 @@
                             ctx.fillStyle = '#f97316';
                             ctx.beginPath(); ctx.arc(px, 39 + Math.sin(px*0.1)*3, 5, 0, Math.PI * 2); ctx.fill();
                         } else {
-                            ctx.fillStyle = '#f59e0b';
+                            ctx.fillStyle = '#facc15';
                             ctx.beginPath(); ctx.arc(px, 39, 4.5, 0, Math.PI * 2); ctx.fill();
                         }
                     }
@@ -566,14 +570,15 @@
         }
         function closeAdminModal() { document.getElementById('admin-modal').style.display = 'none'; }
 
-        /* --- AUTO-UNLOCK ON CORRECT mPIN TYPED --- */
         function checkAutoUnlock(val) {
             const enteredPin = val.trim();
             if (enteredPin === adminSecretPin) {
                 document.getElementById('admin-login-sec').style.display = 'none';
                 document.getElementById('admin-controls-sec').style.display = 'block';
                 document.getElementById('adm-reward-input').value = miningRewardQty;
-                document.getElementById('adm-adlink-input').value = sponsoredAdUrl;
+                document.getElementById('adm-adlink-input').value = adminAdContent;
+                document.getElementById('adm-adtimer-input').value = adminAdTimer;
+                updateAdminToggleUI();
             }
         }
 
@@ -583,37 +588,80 @@
                 document.getElementById('admin-login-sec').style.display = 'none';
                 document.getElementById('admin-controls-sec').style.display = 'block';
                 document.getElementById('adm-reward-input').value = miningRewardQty;
-                document.getElementById('adm-adlink-input').value = sponsoredAdUrl;
+                document.getElementById('adm-adlink-input').value = adminAdContent;
+                document.getElementById('adm-adtimer-input').value = adminAdTimer;
+                updateAdminToggleUI();
             } else {
                 alert('Incorrect mPIN!');
             }
         }
 
+        function updateAdminToggleUI() {
+            const btn = document.getElementById('transfer-toggle-btn');
+            const lbl = document.getElementById('transfer-status-label');
+            if (transferFeatureEnabled) {
+                btn.innerText = "Turn OFF";
+                btn.style.background = "#ef4444";
+                lbl.innerText = "Status: ON (Visible)";
+                lbl.style.color = "#10b981";
+            } else {
+                btn.innerText = "Turn ON";
+                btn.style.background = "#10b981";
+                lbl.innerText = "Status: OFF (Hidden)";
+                lbl.style.color = "#ef4444";
+            }
+        }
+
+        async function toggleTransferFeature() {
+            transferFeatureEnabled = !transferFeatureEnabled;
+            updateAdminToggleUI();
+            applyTransferVisibility();
+
+            try {
+                await db.collection("settings").doc("sky_engine_config").set({
+                    transferEnabled: transferFeatureEnabled
+                }, { merge: true });
+                alert(`✔ Success! Transfer feature is now ${transferFeatureEnabled ? 'ON (Visible)' : 'OFF (Hidden)'}.`);
+            } catch (e) {
+                alert(`✔ Transfer status updated locally.`);
+            }
+        }
+
+        function applyTransferVisibility() {
+            const sectionBox = document.getElementById('transfer-section-box');
+            if (transferFeatureEnabled) {
+                sectionBox.style.display = 'block';
+            } else {
+                sectionBox.style.display = 'none';
+            }
+        }
+
         async function saveMiningRewardOnly() {
-            miningRewardQty = parseFloat(document.getElementById('adm-reward-input').value) || 10;
+            miningRewardQty = parseFloat(document.getElementById('adm-reward-input').value) || 8.5;
             try {
                 await db.collection("settings").doc("sky_engine_config").set({
                     rewardQty: miningRewardQty
                 }, { merge: true });
                 alert(`✔ Success! 3H Mining Reward updated to ${miningRewardQty} SKY.`);
             } catch (e) {
-                alert(`✔ Mining Reward updated locally to ${miningRewardQty} SKY.`);
+                alert(`✔ Mining Reward updated locally.`);
             }
         }
 
-        async function saveAdLinkOnly() {
-            sponsoredAdUrl = document.getElementById('adm-adlink-input').value.trim();
+        async function saveAdSettings() {
+            adminAdContent = document.getElementById('adm-adlink-input').value.trim();
+            adminAdTimer = parseInt(document.getElementById('adm-adtimer-input').value) || 15;
             try {
                 await db.collection("settings").doc("sky_engine_config").set({
-                    adUrl: sponsoredAdUrl
+                    adContent: adminAdContent,
+                    adTimer: adminAdTimer
                 }, { merge: true });
-                alert('✔ Success! Sponsored Ad Link updated successfully.');
+                alert('✔ Success! Ad settings updated successfully.');
             } catch (e) {
-                alert('✔ Ad Link updated locally.');
+                alert('✔ Ad settings updated locally.');
             }
         }
 
-        /* --- DYNAMIC ADMIN PASSWORD / mPIN UPDATE --- */
         async function saveNewAdminPassword() {
             let newPin = document.getElementById('adm-new-mpin').value.trim();
             if (!newPin || newPin.length < 3) {
@@ -626,7 +674,7 @@
                 await db.collection("settings").doc("sky_engine_config").set({
                     adminPin: adminSecretPin
                 }, { merge: true });
-                alert('✔ Success! Admin mPIN / Password updated successfully.');
+                alert('✔ Success! Admin mPIN updated successfully.');
             } catch (e) {
                 alert('✔ Admin Password updated locally.');
             }
@@ -637,9 +685,8 @@
             const uidFromUrl = urlParams.get('uid');
             if (uidFromUrl) {
                 activeUserId = uidFromUrl.trim().toUpperCase();
-                localStorage.setItem('mgsml_active_user', activeUserId);
             } else {
-                activeUserId = localStorage.getItem('mgsml_active_user') || "MGSML2000";
+                activeUserId = "MGSML2000";
             }
             document.getElementById('header-uid').innerText = activeUserId;
             subscribeToUserWallet(activeUserId);
@@ -650,7 +697,7 @@
             db.collection("users").doc(uid).onSnapshot((doc) => {
                 if (doc.exists) {
                     userData = doc.data();
-                    skyBalance = Number(userData.skyBalance ?? userData.tokenBalance ?? 0);
+                    skyBalance = Number(userData.skyBalance ?? 0);
                     registeredUserEmail = userData.email ?? "user@gmail.com";
                     document.getElementById('header-sky-bal').innerText = skyBalance;
                 } else {
@@ -664,15 +711,15 @@
             db.collection("system").doc("sky_tokenomics").onSnapshot((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
-                    globalTotalSupply = data.totalSupply ?? 10000000;
-                    globalPureMigrated = data.pureMigrated ?? (10000000 - globalTotalSupply);
-                    subMigrationPool = data.subMigrationPool ?? 50020;
+                    globalTotalSupply = data.totalSupply ?? 50000000;
+                    globalPureMigrated = data.pureMigrated ?? 0;
+                    subMigrationPool = data.subMigrationPool ?? 0;
                     updateSupplyDisplay();
                 } else {
                     db.collection("system").doc("sky_tokenomics").set({ 
-                        totalSupply: 10000000, 
+                        totalSupply: 50000000, 
                         pureMigrated: 0,
-                        subMigrationPool: 50020
+                        subMigrationPool: 0
                     });
                 }
             });
@@ -680,17 +727,21 @@
             db.collection("settings").doc("sky_engine_config").onSnapshot((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
-                    miningRewardQty = data.rewardQty ?? 10;
-                    sponsoredAdUrl = data.adUrl ?? "";
+                    miningRewardQty = data.rewardQty ?? 8.5;
+                    adminAdContent = data.adContent ?? "";
+                    adminAdTimer = data.adTimer ?? 15;
+                    transferFeatureEnabled = data.transferEnabled ?? false; 
                     if (data.adminPin) {
                         adminSecretPin = data.adminPin;
                     }
+                    applyTransferVisibility();
+                    updateAdminToggleUI();
                 }
             });
         }
 
         function updateSupplyDisplay() {
-            document.getElementById('live-supply-counter').innerText = `${globalTotalSupply.toLocaleString()} / 10,000,000 SKY`;
+            document.getElementById('live-supply-counter').innerText = `${globalTotalSupply.toLocaleString()} / 50,000,000 SKY`;
             document.getElementById('global-mined').innerText = globalPureMigrated > 0 ? globalPureMigrated.toLocaleString() + ' SKY' : '0 SKY';
 
             if (globalTotalSupply <= 0) {
@@ -711,13 +762,14 @@
             }
         }
 
+        // --- Dynamic Real Ad Loading & Auto-Close Timer ---
         function triggerAdBeforeMining() {
             if (globalTotalSupply <= 0) {
-                alert('Total Supply (10,000,000 SKY) Fully Migrated and Officially Listed.');
+                alert('Total Supply (50,000,000 SKY) Fully Migrated and Officially Listed.');
                 return;
             }
 
-            const lastMining = localStorage.getItem('last_mining_time_' + activeUserId);
+            const lastMining = localStorage.getItem('last_mining_time_sky_' + activeUserId);
             const now = new Date().getTime();
 
             if (lastMining && now - parseInt(lastMining) < MINING_COOLDOWN) {
@@ -725,40 +777,36 @@
                 return;
             }
 
+            const adContainer = document.getElementById('active-ad-container');
+            adContainer.innerHTML = "";
+
+            if (adminAdContent && adminAdContent.trim() !== "") {
+                if (adminAdContent.includes("<script") || adminAdContent.includes("<iframe")) {
+                    adContainer.innerHTML = adminAdContent;
+                } else {
+                    // Treat as direct link / URL
+                    adContainer.innerHTML = `<iframe src="${adminAdContent}" style="width:100%; height:100%; border:none;"></iframe>`;
+                }
+            } else {
+                adContainer.innerHTML = `<div style="color:#facc15; font-size:12px; padding:20px;">Sponsored Ad Running (No link configured in Admin Panel)</div>`;
+            }
+
             document.getElementById('ad-modal').style.display = 'flex';
             
-            let timeLeft = 10; 
+            let timeLeft = adminAdTimer; 
             document.getElementById('ad-timer-sec').innerText = timeLeft;
-            document.getElementById('ad-skip-btn').disabled = true;
-            document.getElementById('ad-skip-btn').style.opacity = '0.5';
-            document.getElementById('ad-skip-btn').innerText = "Please watch ad (" + timeLeft + "s)";
-
-            if (sponsoredAdUrl !== "") {
-                const extLink = document.getElementById('ad-external-link');
-                extLink.href = sponsoredAdUrl;
-                extLink.style.display = 'block';
-            } else {
-                document.getElementById('ad-external-link').style.display = 'none';
-            }
 
             const adInterval = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) {
                     document.getElementById('ad-timer-sec').innerText = timeLeft;
-                    document.getElementById('ad-skip-btn').innerText = "Please watch ad (" + timeLeft + "s)";
                 } else {
                     clearInterval(adInterval);
-                    document.getElementById('ad-timer-sec').innerText = "0";
-                    document.getElementById('ad-skip-btn').disabled = false;
-                    document.getElementById('ad-skip-btn').style.opacity = '1';
-                    document.getElementById('ad-skip-btn').innerText = "✔ Close Ad & Claim Mining";
+                    document.getElementById('ad-modal').style.display = 'none'; // Auto close
+                    adContainer.innerHTML = ""; // Clear ad content
+                    executeMiningClaim(); // Start mining automatically
                 }
             }, 1000);
-        }
-
-        function completeAdAndStartMining() {
-            document.getElementById('ad-modal').style.display = 'none';
-            executeMiningClaim();
         }
 
         async function executeMiningClaim() {
@@ -772,7 +820,7 @@
             const now = new Date().getTime();
 
             localStorage.setItem('sky_bal', skyBalance);
-            localStorage.setItem('last_mining_time_' + activeUserId, now);
+            localStorage.setItem('last_mining_time_sky_' + activeUserId, now);
 
             try {
                 await db.collection("users").doc(activeUserId).set({ skyBalance: skyBalance }, { merge: true });
@@ -794,7 +842,7 @@
         }
 
         function initMiningTimer() {
-            const lastMining = localStorage.getItem('last_mining_time_' + activeUserId);
+            const lastMining = localStorage.getItem('last_mining_time_sky_' + activeUserId);
             if (lastMining) {
                 const now = new Date().getTime();
                 const elapsed = now - parseInt(lastMining);
