@@ -41,7 +41,6 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- SKY BLUE & DARK THEME BACKGROUND --- */
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #03162b 0%, #082f49 50%, #020b18 100%);
@@ -54,7 +53,6 @@
             padding-bottom: 70px;
         }
 
-        /* Top Bar */
         .engine-header {
             width: 100%; max-width: 480px; height: 58px;
             background: rgba(8, 47, 73, 0.95); backdrop-filter: blur(12px);
@@ -73,7 +71,6 @@
             display: flex; align-items: center; gap: 5px;
         }
 
-        /* Side Menu Drawer */
         .side-menu {
             position: fixed; left: -280px; top: 0; width: 280px; height: 100%;
             background: #03162b; transition: 0.3s ease-in-out; z-index: 7000;
@@ -84,12 +81,10 @@
         .side-menu h3 { color: #38bdf8; margin-top: 0; font-size: 15px; border-bottom: 1px solid #0284c7; padding-bottom: 10px; }
         .menu-link { display: block; color: white; text-decoration: none; padding: 12px 0; border-bottom: 1px solid #0284c7; font-size: 12px; font-weight: 800; cursor: pointer; }
 
-        /* Container Card */
         .engine-container {
             width: 100%; max-width: 480px; padding: 16px; display: flex; flex-direction: column; gap: 14px;
         }
 
-        /* Mining Card */
         .mining-card {
             background: linear-gradient(145deg, #082f49, #03162b); 
             border: 2.5px solid #0ea5e9; 
@@ -186,7 +181,6 @@
         .stake-btn:active { transform: scale(0.96); }
         .timer-display { font-size: 11.5px; font-weight: 900; color: #facc15; background: #020b18; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #0284c7; margin-top: 8px; }
 
-        /* Transfer Section (Controlled by Admin Toggle Switch) */
         .transfer-section {
             background: linear-gradient(145deg, #082f49, #03162b); 
             border: 2px solid #0ea5e9; 
@@ -195,32 +189,24 @@
             width: 100%; 
             box-sizing: border-box;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            display: none; /* Default Hidden */
+            display: none;
         }
         .form-group { margin-bottom: 10px; text-align: left; }
         .form-label { font-size: 10.5px; font-weight: 800; color: #bae6fd; display: block; margin-bottom: 4px; text-transform: uppercase; }
         .custom-input { width: 100%; padding: 10px; background: #020b18; border: 1.5px solid #0284c7; color: #fff; border-radius: 8px; font-size: 12px; box-sizing: border-box; }
 
-        /* Hidden Admin Modal */
         #admin-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000000; z-index: 9999; justify-content: center; align-items: center;
         }
         .admin-box { background: #0a0a0a; border: 1.5px solid #262626; padding: 24px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; max-height: 90vh; overflow-y: auto; }
 
-        /* Admin Ad Frame Container */
-        #admin-ad-frame {
-            width: 100%; height: 120px; border: 1.5px solid #0284c7; border-radius: 8px; background: #000; margin-top: 5px;
-        }
-
-        /* Auto-Close Ad Popup Modal */
         #ad-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 22, 43, 0.98); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;
         }
         .ad-content-box { width: 92%; max-width: 420px; background: #082f49; border: 2px solid #0ea5e9; border-radius: 16px; padding: 20px; text-align: center; }
 
-        /* Bottom Back Bar */
         .bottom-bar {
             position: fixed; bottom: 0; left: 0; width: 100%; height: 54px;
             background: rgba(8, 47, 73, 0.95); border-top: 1.5px solid rgba(14, 165, 233, 0.4);
@@ -250,7 +236,6 @@
         </div>
     </header>
 
-    <!-- Side Menu Drawer -->
     <div class="side-menu" id="sideMenu">
         <h3>MGSML SKY MENU</h3>
         <a class="menu-link" onclick="toggleMenu()">🏠 Dashboard</a>
@@ -258,7 +243,6 @@
         <a class="menu-link" onclick="toggleMenu()" style="color: #bae6fd;">❌ Close Menu</a>
     </div>
 
-    <!-- Hidden Admin Modal -->
     <div id="admin-modal" style="display:none;">
         <div class="admin-box">
             <h3 style="color:#ffffff; margin-bottom:14px; font-size:14px; letter-spacing:1px;">ADMIN GATEWAY</h3>
@@ -276,10 +260,9 @@
                     <button class="stake-btn" style="background:var(--accent-blue); color:#fff; margin-top:8px; padding:8px;" onclick="saveMiningRewardOnly()">💾 Save Reward</button>
                 </div>
 
-                <!-- Admin Ad Management Settings -->
                 <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px;">
                     <label style="color:#facc15; font-weight:800; display:block; margin-bottom:4px;">📢 3H Mining Ad Link / Script:</label>
-                    <textarea id="adm-adlink-input" class="custom-input" rows="3" placeholder="Paste Adsterra Direct Link or Banner Script here"></textarea>
+                    <textarea id="adm-adlink-input" class="custom-input" rows="3" placeholder="Paste Adsterra Smartlink or Script here"></textarea>
                     
                     <label style="color:#a3a3a3; font-weight:800; display:block; margin:8px 0 4px 0;">Ad Auto-Close Timer (Seconds):</label>
                     <input type="number" id="adm-adtimer-input" class="custom-input" value="15" min="5" max="60">
@@ -287,7 +270,6 @@
                     <button class="stake-btn" style="background:#0284c7; color:#fff; margin-top:8px; padding:8px;" onclick="saveAdSettings()">💾 Save Ad Settings</button>
                 </div>
 
-                <!-- Toggle Switch for Wallet Transfer Feature -->
                 <div style="background:#141414; padding:10px; border-radius:8px; border:1px solid #262626; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
                     <div>
                         <label style="color:#a3a3a3; font-weight:800; display:block;">Mini Exchange Transfer:</label>
@@ -307,15 +289,13 @@
         </div>
     </div>
 
-    <!-- Dynamic Auto-Close Ad Popup Modal -->
     <div id="ad-modal">
         <div class="ad-content-box">
             <h3 style="color:#facc15; margin-bottom:6px;">📢 Sponsored Ad Playing</h3>
             <p style="font-size:10.5px; color:#bae6fd; margin-bottom:10px;">Please view the ad. Mining will start automatically.</p>
             
-            <!-- Real Ad Rendering Container -->
             <div id="active-ad-container" style="width:100%; min-height:220px; background:#000; border-radius:10px; border:1.5px solid #0ea5e9; overflow:hidden; display:flex; justify-content:center; align-items:center; margin-bottom:10px;">
-                <!-- Admin configured ad will load here -->
+                <!-- Ad will load dynamically here -->
             </div>
 
             <div id="ad-countdown-box" style="font-size:16px; font-weight:900; color:#38bdf8; background:#020b18; padding:8px; border-radius:8px; border:1.5px solid #0284c7;">
@@ -325,10 +305,8 @@
     </div>
 
     <main class="engine-container">
-        <!-- Mining Card -->
         <div class="mining-card">
             
-            <!-- Dedicated Global Supply & Burn Box -->
             <div class="supply-burn-box">
                 <div class="supply-text">GLOBAL SUPPLY & REMAINING MIGRATION POOL</div>
                 <div class="supply-val" id="live-supply-counter">50,000,000 / 50,000,000 SKY</div>
@@ -336,13 +314,11 @@
 
             <div class="price-text">1 SKY = ₹0.10 INR (~$<span id="sky-price">0.0012</span> USDT)</div>
 
-            <!-- Factory Pipeline -->
             <div class="factory-machine-box">
                 <div class="factory-title">🏭 Sub-Migration & 24K Pure Vault (2 Years Plan)</div>
                 <canvas id="refinery-canvas" width="440" height="200"></canvas>
             </div>
 
-            <!-- Stats Board -->
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-val" id="rate-sec">0.0008</div>
@@ -358,7 +334,6 @@
                 </div>
             </div>
 
-            <!-- Logo & Progress -->
             <div class="logo-display-box">
                 <div class="logo-circle" id="sky-logo-element">
                     <div class="logo-symbol">☁️⚡</div>
@@ -379,7 +354,6 @@
             <div class="timer-display" id="staking-timer">Ready to Refine & Mine</div>
         </div>
 
-        <!-- Transfer Section (Controlled by Admin Toggle Switch) -->
         <div class="transfer-section" id="transfer-section-box">
             <div class="section-title" style="font-size:12px; font-weight:900; color:#38bdf8; text-transform:uppercase; margin-bottom:8px;">🔄 Mini Exchange Wallet Transfer</div>
             <p style="font-size: 10.5px; color: #bae6fd; margin-bottom: 10px;">Transfer mined SKY to Mini Exchange with mPIN & Gmail Verification.</p>
@@ -421,11 +395,11 @@
         let subMigrationPool = 0;  
         let miningRewardQty = 8.5;
         let adminAdContent = "";
-        let adminAdTimer = 15; // Default 15 seconds
-        let transferFeatureEnabled = false; // Default OFF
+        let adminAdTimer = 15; 
+        let transferFeatureEnabled = false; 
         let adminSecretPin = "1234"; 
         let registeredUserEmail = "user@gmail.com";
-        const MINING_COOLDOWN = 3 * 60 * 60 * 1000; // 3 Hours
+        const MINING_COOLDOWN = 3 * 60 * 60 * 1000; 
 
         const canvas = document.getElementById('refinery-canvas');
         const ctx = canvas.getContext('2d');
@@ -621,9 +595,8 @@
                 await db.collection("settings").doc("sky_engine_config").set({
                     transferEnabled: transferFeatureEnabled
                 }, { merge: true });
-                alert(`✔ Success! Transfer feature is now ${transferFeatureEnabled ? 'ON (Visible)' : 'OFF (Hidden)'}.`);
             } catch (e) {
-                alert(`✔ Transfer status updated locally.`);
+                console.log("Transfer toggle sync note:", e);
             }
         }
 
@@ -651,14 +624,19 @@
         async function saveAdSettings() {
             adminAdContent = document.getElementById('adm-adlink-input').value.trim();
             adminAdTimer = parseInt(document.getElementById('adm-adtimer-input').value) || 15;
+            
+            // Save locally as well to ensure instant fallback
+            localStorage.setItem('local_sky_ad_link', adminAdContent);
+            localStorage.setItem('local_sky_ad_timer', adminAdTimer);
+
             try {
                 await db.collection("settings").doc("sky_engine_config").set({
                     adContent: adminAdContent,
                     adTimer: adminAdTimer
                 }, { merge: true });
-                alert('✔ Success! Ad settings updated successfully.');
+                alert('✔ Success! Ad link and timer saved successfully.');
             } catch (e) {
-                alert('✔ Ad settings updated locally.');
+                alert('✔ Ad settings saved locally.');
             }
         }
 
@@ -724,12 +702,28 @@
                 }
             });
 
+            // Load local backup first for instant availability
+            if (localStorage.getItem('local_sky_ad_link')) {
+                adminAdContent = localStorage.getItem('local_sky_ad_link');
+            }
+            if (localStorage.getItem('local_sky_ad_timer')) {
+                adminAdTimer = parseInt(localStorage.getItem('local_sky_ad_timer')) || 15;
+            }
+
             db.collection("settings").doc("sky_engine_config").onSnapshot((doc) => {
                 if (doc.exists) {
                     const data = doc.data();
                     miningRewardQty = data.rewardQty ?? 8.5;
-                    adminAdContent = data.adContent ?? "";
-                    adminAdTimer = data.adTimer ?? 15;
+                    
+                    if (data.adContent !== undefined && data.adContent.trim() !== "") {
+                        adminAdContent = data.adContent;
+                        localStorage.setItem('local_sky_ad_link', adminAdContent);
+                    }
+                    if (data.adTimer !== undefined) {
+                        adminAdTimer = data.adTimer;
+                        localStorage.setItem('local_sky_ad_timer', adminAdTimer);
+                    }
+
                     transferFeatureEnabled = data.transferEnabled ?? false; 
                     if (data.adminPin) {
                         adminSecretPin = data.adminPin;
@@ -780,15 +774,21 @@
             const adContainer = document.getElementById('active-ad-container');
             adContainer.innerHTML = "";
 
+            // Fallback check from localStorage if firebase takes a moment
+            if (!adminAdContent || adminAdContent.trim() === "") {
+                if (localStorage.getItem('local_sky_ad_link')) {
+                    adminAdContent = localStorage.getItem('local_sky_ad_link');
+                }
+            }
+
             if (adminAdContent && adminAdContent.trim() !== "") {
                 if (adminAdContent.includes("<script") || adminAdContent.includes("<iframe")) {
                     adContainer.innerHTML = adminAdContent;
                 } else {
-                    // Treat as direct link / URL
-                    adContainer.innerHTML = `<iframe src="${adminAdContent}" style="width:100%; height:100%; border:none;"></iframe>`;
+                    adContainer.innerHTML = `<iframe src="${adminAdContent}" style="width:100%; height:100%; border:none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>`;
                 }
             } else {
-                adContainer.innerHTML = `<div style="color:#facc15; font-size:12px; padding:20px;">Sponsored Ad Running (No link configured in Admin Panel)</div>`;
+                adContainer.innerHTML = `<div style="color:#ef4444; font-size:12px; padding:20px; font-weight:bold;">⚠️ No Ad Link Configured in Admin Panel! Please open Admin Panel and paste your Smartlink.</div>`;
             }
 
             document.getElementById('ad-modal').style.display = 'flex';
@@ -802,9 +802,9 @@
                     document.getElementById('ad-timer-sec').innerText = timeLeft;
                 } else {
                     clearInterval(adInterval);
-                    document.getElementById('ad-modal').style.display = 'none'; // Auto close
-                    adContainer.innerHTML = ""; // Clear ad content
-                    executeMiningClaim(); // Start mining automatically
+                    document.getElementById('ad-modal').style.display = 'none'; 
+                    adContainer.innerHTML = ""; 
+                    executeMiningClaim(); 
                 }
             }, 1000);
         }
