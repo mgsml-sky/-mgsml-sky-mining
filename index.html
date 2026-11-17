@@ -201,6 +201,7 @@
         }
         .admin-box { background: #0a0a0a; border: 1.5px solid #262626; padding: 24px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; max-height: 90vh; overflow-y: auto; }
 
+        /* Clean Ad Overlay Popup */
         #ad-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 22, 43, 0.98); z-index: 99999; justify-content: center; align-items: center; flex-direction: column;
@@ -289,17 +290,18 @@
         </div>
     </div>
 
+    <!-- Clean Ad Overlay with Timer & Clickable Banner / Smartlink Option -->
     <div id="ad-modal">
         <div class="ad-content-box">
-            <h3 style="color:#facc15; margin-bottom:6px;">📢 Sponsored Ad Playing</h3>
-            <p style="font-size:10.5px; color:#bae6fd; margin-bottom:10px;">Please view the ad. Mining will start automatically.</p>
+            <h3 style="color:#facc15; margin-bottom:6px;">📢 Sponsored Ad Running</h3>
+            <p style="font-size:11px; color:#bae6fd; margin-bottom:10px;" id="ad-instruction-text">Please wait <span id="ad-timer-sec">15</span> seconds...</p>
             
-            <div id="active-ad-container" style="width:100%; min-height:220px; background:#000; border-radius:10px; border:1.5px solid #0ea5e9; overflow:hidden; display:flex; justify-content:center; align-items:center; margin-bottom:10px;">
-                <!-- Ad will load dynamically here -->
+            <div id="active-ad-container" style="width:100%; min-height:200px; background:#020b18; border-radius:10px; border:1.5px solid #0ea5e9; overflow:hidden; display:flex; flex-direction:column; justify-content:center; align-items:center; margin-bottom:12px; padding:10px;">
+                <!-- Ad or Smartlink Link will render cleanly here -->
             </div>
 
-            <div id="ad-countdown-box" style="font-size:16px; font-weight:900; color:#38bdf8; background:#020b18; padding:8px; border-radius:8px; border:1.5px solid #0284c7;">
-                Auto-closing in: <span id="ad-timer-sec">15</span>s
+            <div id="ad-countdown-box" style="font-size:13px; font-weight:900; color:#38bdf8; background:#020b18; padding:8px; border-radius:8px; border:1.5px solid #0284c7;">
+                Mining unlocks in: <span id="ad-timer-sec-box">15</span>s
             </div>
         </div>
     </div>
@@ -625,7 +627,6 @@
             adminAdContent = document.getElementById('adm-adlink-input').value.trim();
             adminAdTimer = parseInt(document.getElementById('adm-adtimer-input').value) || 15;
             
-            // Save locally as well to ensure instant fallback
             localStorage.setItem('local_sky_ad_link', adminAdContent);
             localStorage.setItem('local_sky_ad_timer', adminAdTimer);
 
@@ -702,7 +703,6 @@
                 }
             });
 
-            // Load local backup first for instant availability
             if (localStorage.getItem('local_sky_ad_link')) {
                 adminAdContent = localStorage.getItem('local_sky_ad_link');
             }
@@ -756,7 +756,7 @@
             }
         }
 
-        // --- Dynamic Real Ad Loading & Auto-Close Timer ---
+        // --- Clean Ad Overlay & Dynamic Timer System ---
         function triggerAdBeforeMining() {
             if (globalTotalSupply <= 0) {
                 alert('Total Supply (50,000,000 SKY) Fully Migrated and Officially Listed.');
@@ -774,7 +774,6 @@
             const adContainer = document.getElementById('active-ad-container');
             adContainer.innerHTML = "";
 
-            // Fallback check from localStorage if firebase takes a moment
             if (!adminAdContent || adminAdContent.trim() === "") {
                 if (localStorage.getItem('local_sky_ad_link')) {
                     adminAdContent = localStorage.getItem('local_sky_ad_link');
@@ -785,21 +784,29 @@
                 if (adminAdContent.includes("<script") || adminAdContent.includes("<iframe")) {
                     adContainer.innerHTML = adminAdContent;
                 } else {
-                    adContainer.innerHTML = `<iframe src="${adminAdContent}" style="width:100%; height:100%; border:none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>`;
+                    // Clickable Banner / Smartlink button that user can view
+                    adContainer.innerHTML = `
+                        <div style="padding:10px; text-align:center;">
+                            <p style="font-size:12px; color:#bae6fd; margin-bottom:8px;">Click below to view sponsor ad & support mining:</p>
+                            <a href="${adminAdContent}" target="_blank" style="display:inline-block; background:#0284c7; color:#fff; padding:8px 16px; border-radius:6px; font-weight:bold; font-size:12px; text-decoration:none;">🚀 Open Sponsor Ad</a>
+                        </div>
+                    `;
                 }
             } else {
-                adContainer.innerHTML = `<div style="color:#ef4444; font-size:12px; padding:20px; font-weight:bold;">⚠️ No Ad Link Configured in Admin Panel! Please open Admin Panel and paste your Smartlink.</div>`;
+                adContainer.innerHTML = `<div style="color:#ef4444; font-size:11.5px; padding:15px; font-weight:bold;">⚠️ No Ad Link Configured in Admin Panel! Please set your Adsterra link.</div>`;
             }
 
             document.getElementById('ad-modal').style.display = 'flex';
             
             let timeLeft = adminAdTimer; 
             document.getElementById('ad-timer-sec').innerText = timeLeft;
+            document.getElementById('ad-timer-sec-box').innerText = timeLeft;
 
             const adInterval = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) {
                     document.getElementById('ad-timer-sec').innerText = timeLeft;
+                    document.getElementById('ad-timer-sec-box').innerText = timeLeft;
                 } else {
                     clearInterval(adInterval);
                     document.getElementById('ad-modal').style.display = 'none'; 
